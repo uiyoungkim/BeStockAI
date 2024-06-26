@@ -1,4 +1,3 @@
-// src/app/components/Header.js
 'use client';
 
 import * as React from 'react';
@@ -17,7 +16,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Road Map', 'About us', 'Contact', 'LLM'];
+const pages = ['Road Map', 'About us', 'Contact', 'LLM', 'Color'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header() {
@@ -40,21 +39,21 @@ function Header() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: 'black', borderBottom: '2px solid white' }}>
+    <AppBar position="static" sx={{ borderBottom: '1px solid white' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: 'white' }} />
+          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'white',
+              color: 'inherit',
               textDecoration: 'none',
             }}
           >
@@ -101,7 +100,7 @@ function Header() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, color: 'white' }} />
+          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -113,7 +112,7 @@ function Header() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'white',
+              color: 'inherit',
               textDecoration: 'none',
             }}
           >
@@ -127,7 +126,7 @@ function Header() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block', fontSize: '1.25rem', fontWeight: 'bold', padding: '0 20px' }}
+                sx={{ my: 2, color: 'inherit', display: 'block', fontSize: '1.25rem', fontWeight: 'bold', padding: '0 20px' }}
               >
                 <Link href={`/${page.toLowerCase().replace(/ /g, '-')}`} passHref>
                   {page}

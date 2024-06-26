@@ -1,0 +1,41 @@
+.container {
+    padding: 2rem;
+  }
+  
+  .colors {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .colorGroup {
+    margin: 1rem;
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .colorTitle {
+    margin-bottom: 0.5rem;
+  }
+  
+  .colorSwatches {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .colorSwatch {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .colorBox {
+    width: 40px;
+    height: 40px;
+    margin-right: 1rem;
+    border: 1px solid #ddd;
+  }
+  
+  .colorLabel {
+    flex-grow: 1;
+  }
+  
