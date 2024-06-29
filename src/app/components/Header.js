@@ -16,7 +16,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Road Map', 'About us', 'Contact', 'LLM', 'Color'];
+const pages = ['Road Map', 'Our Team', 'Contact', 'LLM', 'Color'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header() {
@@ -126,7 +126,7 @@ function Header() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'inherit', display: 'block', fontSize: '1.25rem', fontWeight: 'bold', padding: '0 20px' }}
+                sx={{ my: 2, color: 'inherit', display: 'block', fontSize: '1rem', fontWeight: 'bold', padding: '0 20px' }}
               >
                 <Link href={`/${page.toLowerCase().replace(/ /g, '-')}`} passHref>
                   {page}
