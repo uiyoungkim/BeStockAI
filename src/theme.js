@@ -1,11 +1,21 @@
-// src/theme.js
 import { createTheme } from '@mui/material/styles';
-
 
 const theme = createTheme({
     palette: {
         primary: {
+            10: '#0b0c0d',
+            20: '#212326',
+            30: '#373b40',
+            35: '#40444a',
+            40: '#4d5259',
+            50: '#646a73',
             main: '#000000',
+        },
+        accent: {
+            20: '#345057',
+            30: '#537f8a',
+            40: '#71aebd',
+            50: '#90ddf0',
         },
         secondary: {
             main: '#dc004e',

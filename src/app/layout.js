@@ -1,6 +1,5 @@
 'use client';
 import './styles/globals.css';
-import Header from './components/Header';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import theme from '../theme';
 import GlobalLayout from './components/GlobalLayout';
@@ -16,7 +15,6 @@ export default function RootLayout({ children }) {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <GlobalLayout>
-            <Header />
             <main>{children}</main>
           </GlobalLayout>
         </ThemeProvider>

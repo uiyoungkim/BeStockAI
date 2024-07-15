@@ -8,12 +8,12 @@
 html, body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: black; /* Setze den Hintergrund auf schwarz */
-  color: white; /* Setze den Text auf weiß */
+  background-color: var(--primary-30); /* Setze den Hintergrund auf die definierte Farbe */
+  color: var(--text-primary); /* Setze den Text auf die definierte Farbe */
 }
 
 body {
-  background: black; 
+  background: var(--primary-10); 
 }
 
 a {
@@ -29,6 +29,16 @@ a {
 
 /* Custom Properties */
 :root {
+  --primary-10: #0b0c0d;
+  --primary-20: #212326;
+  --primary-30: #373b40;
+  --primary-35: #40444a;
+  --primary-40: #4d5259;
+  --primary-50: #646a73;
+  --accent-20: #345057;
+  --accent-30: #537f8a;
+  --accent-40: #71aebd;
+  --accent-50: #90ddf0;
   --primary-main: #000000; 
   --primary-light: #63a4ff;
   --primary-dark: #004ba0;
