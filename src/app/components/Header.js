@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
@@ -18,6 +17,8 @@ import AdbIcon from '@mui/icons-material/Adb';
 import LoginDialog from './LoginDialog';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useTheme } from '@mui/material/styles';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import Image from 'next/image';
 
 const pages = ['Road Map', 'Our Team', 'Contact', 'LLM', 'Color', 'Finance'];
 const settings = ['Profile', 'Account', 'Dashboard'];
@@ -26,7 +27,6 @@ const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
 function Header() {
   const theme = useTheme();
-
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -65,24 +65,11 @@ function Header() {
       <AppBar position="static" sx={{ backgroundColor: theme.palette.primary[20] }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
-              LOGO
-            </Typography>
-
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
+              <Link href="/" passHref>
+                <Image src="/logo5.png" alt="Logo" width={65} height={55} />
+              </Link>
+            </Box>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
@@ -123,25 +110,11 @@ function Header() {
                 ))}
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
-              sx={{
-                flexGrow: 1,
-                display: { xs: 'flex', md: 'none' },
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
-              LOGO
-            </Typography>
-
+            <Box sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>
+              <Link href="/" passHref>
+                <Image src="/logo.png" alt="Logo" width={50} height={50} />
+              </Link>
+            </Box>
             <Box sx={{ flexGrow: 1 }} />
 
             <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
@@ -161,7 +134,7 @@ function Header() {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <AccountCircle sx={{ fontSize: 40 }} />
                 </IconButton>
               </Tooltip>
               <Menu

@@ -16,7 +16,6 @@ import SendIcon from "@mui/icons-material/Send";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import ThreeScene from "../components/ThreeScene";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -42,15 +41,10 @@ export default function Contact() {
         <Typography
           variant="h4"
           gutterBottom
-          sx={{ textAlign: "center", mb: 3 }}
+          sx={{ textAlign: "center", mb: 3, color: theme.palette.accent[50] }}
         >
           Contact Us
         </Typography>
-        <Box sx={{ display: "flex", justifyContent: "center", mb: 4 }}>
-          <Box sx={{ width: "100%", maxWidth: "600px", height: "300px" }}>
-            <ThreeScene /> {/* Einfügen der 3D-Szene */}
-          </Box>
-        </Box>
         <Typography variant="body1" sx={{ textAlign: "center", mb: 4 }}>
           We'd love to hear from you! Fill out the form below to get in touch
           with us.
@@ -145,8 +139,12 @@ export default function Contact() {
             fullWidth
             sx={{
               mt: 3,
-              backgroundColor: theme.palette.primary.main,
-              "&:hover": { backgroundColor: theme.palette.primary.dark },
+              backgroundColor: theme.palette.accent[40], // Customize background color
+              color: theme.palette.primary.main, // Customize text color
+              textTransform: "none", // Prevent uppercase transformation
+              "&:hover": {
+                backgroundColor: theme.palette.primary[40], // Customize hover color
+              },
             }}
           >
             Send Message

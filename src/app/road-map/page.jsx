@@ -64,7 +64,9 @@ export default function RoadMap() {
   return (
     <Container maxWidth="lg" sx={{ mt: 4 }}>
       <Box sx={{ textAlign: "center", mb: 4 }}>
-        <Typography variant="h2">Our Road Map</Typography>
+        <Typography variant="h2" sx={{ color: theme.palette.accent[50] }}>
+          Our Road Map
+        </Typography>
         <Typography variant="body1">
           Follow our journey as we achieve these milestones.
         </Typography>
@@ -78,10 +80,10 @@ export default function RoadMap() {
                 width: 100,
                 height: 100,
                 borderRadius: "50%",
-                backgroundColor: theme.palette.info.main,
+                backgroundColor: theme.palette.accent[30],
                 color: "white",
                 "&:hover": {
-                  backgroundColor: theme.palette.info.dark,
+                  backgroundColor: theme.palette.primary[30],
                 },
               }}
             >
@@ -107,8 +109,17 @@ export default function RoadMap() {
           {steps[selectedStep].linkText && (
             <Button
               variant="contained"
-              color="primary"
+              color="secondary"
               href={steps[selectedStep].linkHref}
+              sx={{
+                mt: 3,
+                backgroundColor: theme.palette.accent[40], // Customize background color
+                color: theme.palette.primary.main, // Customize text color
+                textTransform: "none", // Prevent uppercase transformation
+                "&:hover": {
+                  backgroundColor: theme.palette.primary[40], // Customize hover color
+                },
+              }}
             >
               {steps[selectedStep].linkText}
             </Button>
