@@ -13,14 +13,14 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+
 import LoginDialog from './LoginDialog';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useTheme } from '@mui/material/styles';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import Image from 'next/image';
 
-const pages = ['Road Map', 'Our Team', 'Contact', 'LLM', 'Color', 'Finance'];
+const pages = ['Roadmap', 'Our Team', 'Contact', 'LLM', 'Color', 'Finance'];
 const settings = ['Profile', 'Account', 'Dashboard'];
 
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
