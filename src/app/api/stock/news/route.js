@@ -3,13 +3,10 @@ import { NextResponse } from 'next/server';
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const symbol = searchParams.get('symbol');
-    const apiKey = process.env.ALPHA_VANTAGE_API_KEY;
+    const apiKey = process.env.FINNHUB_API_KEY;
 
-    const url = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${apiKey}`;
+    const url = `https://finnhub.io/api/v1/company-news?symbol=${symbol}&from=2023-01-01&to=2023-12-31&token=${apiKey}`;
 
-    // it works on symbol and not with the company name. 
-    // Nvidia won't work. Instead use NVDA
-    // It is possible to fix this using LangGraph or consider using another API
     try {
         const response = await fetch(url);
         if (!response.ok) {
