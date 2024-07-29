@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   TextField,
   Typography,
   Container,
   Box,
-  Paper,
   CircularProgress,
   Grid,
   Card,
@@ -15,6 +14,9 @@ import {
   CardHeader,
   useTheme,
 } from "@mui/material";
+import { Line } from "react-chartjs-2";
+import Chart from "chart.js/auto";
+import "chartjs-adapter-date-fns"; // Import the date adapter
 
 const companyNameToSymbol = {
   Apple: "AAPL",
@@ -27,12 +29,14 @@ const companyNameToSymbol = {
   IBM: "IBM",
   Nvidia: "NVDA",
   SAP: "SAP",
+  // Weitere Unternehmen hinzufügen
 };
 
 export default function HomePage() {
   const [input, setInput] = useState("");
   const [profileData, setProfileData] = useState(null);
   const [quoteData, setQuoteData] = useState(null);
+  const [historyData, setHistoryData] = useState(null);
   const [newsData, setNewsData] = useState(null);
   const [recommendationData, setRecommendationData] = useState(null);
   const [error, setError] = useState(null);
@@ -40,7 +44,7 @@ export default function HomePage() {
   const theme = useTheme();
 
   const handleSearch = async () => {
-    setError(null);
+    setError(null); // Clear previous errors
     setLoading(true);
     const symbol = companyNameToSymbol[input] || input.toUpperCase(); // Try to get the symbol, fallback to input as symbol
 
@@ -49,6 +53,9 @@ export default function HomePage() {
         `/api/stock/profile?symbol=${symbol}`
       );
       const quoteResponse = await fetch(`/api/stock/quote?symbol=${symbol}`);
+      const historyResponse = await fetch(
+        `/api/stock/history?symbol=${symbol}`
+      );
       const newsResponse = await fetch(`/api/stock/news?symbol=${symbol}`);
       const recommendationResponse = await fetch(
         `/api/stock/recommendation?symbol=${symbol}`
@@ -57,6 +64,7 @@ export default function HomePage() {
       if (
         !profileResponse.ok ||
         !quoteResponse.ok ||
+        !historyResponse.ok ||
         !newsResponse.ok ||
         !recommendationResponse.ok
       ) {
@@ -65,18 +73,21 @@ export default function HomePage() {
 
       const profileData = await profileResponse.json();
       const quoteData = await quoteResponse.json();
+      const historyData = await historyResponse.json();
       const newsData = await newsResponse.json();
       const recommendationData = await recommendationResponse.json();
 
       if (
         profileData.error ||
         quoteData.error ||
+        historyData.error ||
         newsData.error ||
         recommendationData.error
       ) {
         throw new Error(
           profileData.error ||
             quoteData.error ||
+            historyData.error ||
             newsData.error ||
             recommendationData.error
         );
@@ -84,6 +95,7 @@ export default function HomePage() {
 
       setProfileData(profileData);
       setQuoteData(quoteData);
+      setHistoryData(historyData);
       setNewsData(newsData);
       setRecommendationData(recommendationData);
     } catch (error) {
@@ -92,6 +104,55 @@ export default function HomePage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const chartData = historyData
+    ? {
+        labels: historyData.data.map((item) => item.date),
+        datasets: [
+          {
+            label: "Close Price",
+            data: historyData.data.map((item) => item.close),
+            borderColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.primary.light,
+            fill: false,
+          },
+        ],
+      }
+    : null;
+
+  const chartOptions = {
+    animation: false, // Disable animation
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        type: "time",
+        time: {
+          unit: "day",
+          tooltipFormat: "ll",
+          displayFormats: {
+            day: "MMM d",
+          },
+        },
+        title: {
+          display: true,
+          text: "Date",
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Price (USD)",
+        },
+        beginAtZero: false,
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
   };
 
   return (
@@ -188,6 +249,19 @@ export default function HomePage() {
               </CardContent>
             </Card>
           </Grid>
+
+          {historyData && (
+            <Grid item xs={12}>
+              <Card sx={{ backgroundColor: theme.palette.accent[20] }}>
+                <CardHeader title="Stock Chart" />
+                <CardContent>
+                  <Box sx={{ height: "400px" }}>
+                    <Line data={chartData} options={chartOptions} />
+                  </Box>
+                </CardContent>
+              </Card>
+            </Grid>
+          )}
 
           {newsData && (
             <Grid item xs={12}>
