@@ -20,7 +20,7 @@ import { useTheme } from '@mui/material/styles';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import Image from 'next/image';
 
-const pages = ['Roadmap', 'Our Team', 'Contact', 'LLM', 'Color', 'Finance'];
+const pages = ['Roadmap', 'Our Team', 'Contact', 'LLM', 'Pricing', 'Finance'];
 const settings = ['Profile', 'Account', 'Dashboard'];
 
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;

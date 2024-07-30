@@ -1,13 +1,25 @@
 import { NextResponse } from 'next/server';
 
+const API_URL = 'https://api.stockdata.org/v1/data/eod';
+const API_KEY = process.env.STOCKDATA_API_KEY;
 
-// https://www.stockdata.org/documentation
+function formatDate(date) {
+    return date.toISOString().split('T')[0];
+}
+
+function getDateNDaysAgo(n) {
+    const date = new Date();
+    date.setDate(date.getDate() - n);
+    return formatDate(date);
+}
+
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const symbol = searchParams.get('symbol');
-    const apiKey = process.env.STOCKDATA_API_KEY;
+    const dateFrom = getDateNDaysAgo(180);
+    const dateTo = formatDate(new Date());
 
-    const url = `https://api.stockdata.org/v1/data/eod?symbols=${symbol}&api_token=${apiKey}`;
+    const url = `${API_URL}?symbols=${symbol}&date_from=${dateFrom}&date_to=${dateTo}&api_token=${API_KEY}`;
 
     try {
         const response = await fetch(url);
@@ -15,7 +27,6 @@ export async function GET(request) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        //   console.log(data);  // Log the response data for debugging
         return NextResponse.json(data);
     } catch (error) {
         console.error('Error fetching data:', error);

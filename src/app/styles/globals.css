@@ -54,3 +54,6 @@ a {
   --text-secondary: #aaaaaa; /* Hellgrauer Text für sekundäre Inhalte */
   /* Weitere Farben nach Bedarf hinzufügen */
 }
+.price {
+  color: var(--text-primary) !important;
+}

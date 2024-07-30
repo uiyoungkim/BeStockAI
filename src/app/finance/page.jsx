@@ -41,10 +41,11 @@ export default function HomePage() {
   const [recommendationData, setRecommendationData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [newsLimit, setNewsLimit] = useState(3); // State to control the number of news articles displayed
   const theme = useTheme();
 
   const handleSearch = async () => {
-    setError(null); // Clear previous errors
+    setError(null);
     setLoading(true);
     const symbol = companyNameToSymbol[input] || input.toUpperCase(); // Try to get the symbol, fallback to input as symbol
 
@@ -104,6 +105,10 @@ export default function HomePage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleLoadMoreNews = () => {
+    setNewsLimit((prevLimit) => prevLimit + 3); // Increase the limit by 3
   };
 
   const chartData = historyData
@@ -172,7 +177,25 @@ export default function HomePage() {
           variant="outlined"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          sx={{ marginRight: 2 }}
+          sx={{
+            marginRight: 2,
+            "& .MuiInputBase-root": {
+              backgroundColor: theme.palette.background.paper,
+              color: theme.palette.text.primary,
+            },
+            "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
+              borderColor: theme.palette.primary.main,
+            },
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: theme.palette.divider,
+            },
+            "& .MuiInputLabel-root": {
+              color: theme.palette.text.primary,
+            },
+            "& .MuiInputLabel-root.Mui-focused": {
+              color: theme.palette.text.primary,
+            },
+          }}
         />
         <Button
           variant="contained"
@@ -268,7 +291,7 @@ export default function HomePage() {
               <Card sx={{ backgroundColor: theme.palette.accent[20] }}>
                 <CardHeader title="Latest News" />
                 <CardContent>
-                  {newsData.slice(0, 3).map((news, index) => (
+                  {newsData.slice(0, newsLimit).map((news, index) => (
                     <Box key={index} mb={2}>
                       <Typography variant="body1" gutterBottom>
                         <strong>{news.headline}</strong>
@@ -287,6 +310,22 @@ export default function HomePage() {
                       </Typography>
                     </Box>
                   ))}
+                  {newsLimit < newsData.length && (
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={handleLoadMoreNews}
+                      sx={{
+                        mt: 2,
+                        backgroundColor: theme.palette.accent[30],
+                        "&:hover": {
+                          backgroundColor: theme.palette.primary[30],
+                        },
+                      }}
+                    >
+                      More News
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             </Grid>
