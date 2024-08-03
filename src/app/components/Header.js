@@ -62,12 +62,12 @@ function Header() {
 
   return (
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-      <AppBar position="static" sx={{ backgroundColor: theme.palette.primary[20] }}>
+      <AppBar position="fixed" sx={{ backgroundColor: theme.palette.primary[20] }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
               <Link href="/" passHref>
-                <Image src="/logo5.png" alt="Logo" width={65} height={55} />
+                <Image src="/logo.png" alt="Logo" width={65} height={55} />
               </Link>
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
