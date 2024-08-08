@@ -18,9 +18,9 @@ const Footer = () => {
                     <Grid item xs={12} sm={6} md={3}>
                         <Typography variant="h6" gutterBottom>Legal</Typography>
                         <ul style={{ listStyle: 'none', padding: 0 }}>
-                            <li><Link href="/imprint" color="inherit">Imprint</Link></li>
-                            <li><Link href="/privacy" color="inherit">Privacy</Link></li>
-                            <li><Link href="/terms" color="inherit">Terms and Conditions</Link></li>
+                            <li><Link href="/legal/imprint" color="inherit">Imprint</Link></li>
+                            <li><Link href="/legal/privacy" color="inherit">Privacy</Link></li>
+                            <li><Link href="/legal/terms" color="inherit">Terms and Conditions</Link></li>
                         </ul>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
