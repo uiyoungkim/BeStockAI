@@ -27,7 +27,7 @@ const Footer = () => {
                         <Typography variant="h6" gutterBottom>Contact</Typography>
                         <ul style={{ listStyle: 'none', padding: 0 }}>
                             <li><Link href="/contact" color="inherit">Contact</Link></li>
-                            <li><Link href="mailto:info@yourcompany.com" color="inherit">info@yourcompany.com</Link></li>
+                            <li> warren.gemini.service@gmail.com</li>
                         </ul>
                     </Grid>
                 </Grid>

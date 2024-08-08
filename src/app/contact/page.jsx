@@ -23,13 +23,36 @@ export default function Contact() {
   const [message, setMessage] = useState("");
   const theme = useTheme();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Form submitted:", { name, email, message });
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Ensure this is working to prevent default form action
+    const formData = {
+      name,
+      email,
+      message,
+    };
+
+    try {
+      const response = await fetch("/api/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log("Response Data:", data);
+      } else {
+        console.error("Error Response Data:", data);
+      }
+    } catch (error) {
+      console.error("Error in fetch:", error);
+    }
   };
 
   return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
+    <Container maxWidth="md" sx={{ mt: 12 }}>
       <Paper
         elevation={3}
         sx={{
@@ -151,25 +174,25 @@ export default function Contact() {
           </Button>
         </Box>
         <Grid container spacing={2} sx={{ mt: 4 }}>
-          <Grid item xs={12} sm={4}>
-            <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Grid item xs={12} sm={6}>
+            <Box
+              sx={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
+            >
               <EmailIcon sx={{ mr: 2, color: theme.palette.text.primary }} />
-              <Typography variant="body1">contact@example.com</Typography>
+              <Typography variant="body1">
+                warren.gemini.service@gmail.com
+              </Typography>
             </Box>
           </Grid>
-          <Grid item xs={12} sm={4}>
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <PhoneIcon sx={{ mr: 2, color: theme.palette.text.primary }} />
-              <Typography variant="body1">+1 234 567 890</Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Grid item xs={12} sm={6}>
+            <Box
+              sx={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
+            >
               <LocationOnIcon
                 sx={{ mr: 2, color: theme.palette.text.primary }}
               />
               <Typography variant="body1">
-                1234 Street Name, City, Country
+                Hardtwalding 31, Oftersheim, Germany
               </Typography>
             </Box>
           </Grid>
