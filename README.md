@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Finance Assistance Application
 
-## Getting Started
+Welcome to the Finance Assistance Application, an innovative MVP prototype designed to empower users with intelligent financial insights using cutting-edge GenAI technology.
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This application serves as a financial assistant by leveraging Large Language Models (LLM) to provide valuable insights and recommendations for stock trading. By analyzing recent news, market trends, and historical data, the application offers users comprehensive assistance to inform their buying and selling decisions.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Key Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Stock Information:** Access up-to-date information on various stocks, including price movements, historical trends, and financial news.
+- **Predictive Analysis:** Use AI-powered predictive analytics to anticipate market trends and suggest optimal buy/sell timings.
+- **Decision Assistance:** Receive tailored advice on whether to buy, hold, or sell specific stocks, complete with detailed explanations and reasoning.
+- **Real-time News Integration:** Stay informed with the latest market news and developments that could impact stock performance.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Technology Stack
+
+The application is built using the following technologies:
+
+- **GenAI Technology:** Utilizing advanced generative AI models to understand and process financial data.
+- **Langchain Framework:** Implementing Langchain for efficient prompt engineering and Retrieval Augmented Generation, maximizing the effectiveness of the application.
+
+## Future Development
+
+We are committed to enhancing this application further. Our future plans include:
+
+- Expanding the range of financial instruments supported
+- Improving predictive models with more sophisticated algorithms
+- Integrating more diverse data sources for enriched insights
+- Enhancing user interface and experience
+
+## Contribution
+
+At this stage, we are not accepting contributions from the public as we continue to develop and refine the application. We appreciate your understanding and interest.
+
+## Acknowledgments
+
+Special thanks to everyone involved in the development of this application and to the Google Gemini competition for providing a platform to showcase our innovation.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+For more information about the Google Gemini competition and to follow our progress, visit [Google Gemini Competition](https://ai.google.dev/competition).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Support
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If you have any questions or feedback, feel free to open an issue or contact us directly.
