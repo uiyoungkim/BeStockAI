@@ -69,7 +69,7 @@ export default function Contact() {
           Contact Us
         </Typography>
         <Typography variant="body1" sx={{ textAlign: "center", mb: 4 }}>
-          We'd love to hear from you! Fill out the form below to get in touch
+          We`&apos;`d love to hear from you! Fill out the form below to get in touch
           with us.
         </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>

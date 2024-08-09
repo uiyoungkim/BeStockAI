@@ -2,7 +2,7 @@ import nextra from 'nextra'
  
 const withNextra = nextra({
   theme: 'nextra-theme-docs',
-  themeConfig: './pages/documentation/theme.config.jsx'
+  themeConfig: './src/app/components/theme.config.jsx'
   // ... your Nextra config
 })
  
