@@ -66,7 +66,7 @@ const TermsPage = () => {
         paragraph
         sx={{ color: theme.palette.text.primary }}
       >
-        This application is provided "as is" without any warranties of any kind,
+        This application is provided `&quot;`as is`&quot;` without any warranties of any kind,
         either express or implied. We disclaim all liability for any damages,
         losses, or issues that may arise from using this application. Users
         assume all risks associated with the use of this prototype.
