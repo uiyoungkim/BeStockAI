@@ -18,13 +18,13 @@ const teamMembers = [
   {
     name: "Uiyoung Kim",
     bio: "Currently studying Business Informatics at Duale Hochschule Baden-Württemberg, I am passionate about leveraging GenAI and finance to innovate and drive industry change. I'm actively seeking opportunities to engage with projects that blend technology with practical applications.",
-    image: "/profile/Kim.png",
+    image: "/profilePicture/Kim.png",
     linkedInUrl: "https://www.linkedin.com/in/uiyoungkim",
   },
   {
     name: "Leonard Eutin",
     bio: "As an Informatics graduate from Duale Hochschule Baden-Württemberg and a seasoned developer, I am fascinated by the transformative potential of GenAI within the financial sector. My goal is to develop solutions that make significant impacts through innovative technology.",
-    image: "/profile/Leo.png",
+    image: "/profilePicture/Leo.png",
     linkedInUrl: "https://www.linkedin.com/in/leonard-e-573717176/",
   },
 ];
