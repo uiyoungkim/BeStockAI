@@ -3,7 +3,7 @@
 import React from 'react';
 import { Container, Box, Typography, Button, Grid, useTheme } from '@mui/material';
 import Link from 'next/link';
-import Chatbot from './components/Chatbot'; // Adjusted import path
+import Chatbot from './components/Chatbot';
 import { keyframes } from '@mui/system';
 
 export default function StartPage() {
@@ -57,7 +57,7 @@ export default function StartPage() {
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         {/* Hero Section */}
         <Box sx={{ textAlign: 'center', mt: 8, mb: 6 }}>
-          <Typography variant="h2" sx={{ color: theme.palette.accent[40], mb: 2 }}>
+          <Typography variant="h2" sx={{ color: theme.palette.accent[50], mb: 2 }}>
             Welcome to Our Finance Assistance Project
           </Typography>
           <Typography variant="h5" sx={{ color: theme.palette.accent[30], mb: 4 }}>
@@ -89,7 +89,7 @@ export default function StartPage() {
 
         {/* Introduction Section */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography variant="h4" sx={{ mb: 4 }}>
+          <Typography variant="h4" sx={{ mb: 4, color: theme.palette.accent[40] }}>
             About the Project
           </Typography>
           <Typography variant="body1" sx={{ mb: 4 }}>
@@ -99,7 +99,7 @@ export default function StartPage() {
 
         {/* Navigation Section */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography variant="h4" sx={{ mb: 4 }}>
+          <Typography variant="h4" sx={{ mb: 4, color: theme.palette.accent[40] }}>
             Explore More
           </Typography>
           <Grid container spacing={4} justifyContent="center">

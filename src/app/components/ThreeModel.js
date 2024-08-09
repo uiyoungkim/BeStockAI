@@ -11,8 +11,9 @@ const ThreeModel = ({ modelPath, scale = [1, 1, 1], position = [0, 0, 0], rotati
         // Create scene
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, currentMount.clientWidth / currentMount.clientHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // Enable alpha transparency
         renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
+        renderer.setClearColor(0x000000, 0); // Set clear color to black with 0 opacity
         currentMount.appendChild(renderer.domElement);
 
         // Add light
