@@ -19,21 +19,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MicIcon from "@mui/icons-material/Mic";
 import ImageIcon from "@mui/icons-material/Image";
 
-import { PromptTemplate } from "@langchain/core/prompts";
-
-import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
-
-import { StringOutputParser } from "@langchain/core/output_parsers";
-
-import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
-
-const API_KEY = process.env.GEMINI_API_KEY;
-
-const recommendedPrompts = [
-  "What's the latest news?",
-  "Stock Analysis",
-  "Crypto Updates",
-];
+const recommendedPrompts = ["What's the latest news?", "Stock Analysis"];
 
 export default function LLMPage() {
   const theme = useTheme();
@@ -55,31 +41,31 @@ export default function LLMPage() {
       setMessages([...messages, { text: message, sender: "user" }]);
 
       try {
-        const llm = new ChatGoogleGenerativeAI({
-          model: "gemini-1.5-pro",
-          apiKey: "AIzaSyBUbaUKg4LzFn5MACUVBl2sae6UkjdYCXM",
-          temperature: 0,
-          maxRetries: 2,
+        const response = await fetch("/api/gemini", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message }),
         });
 
-        const template = `Assistant is designed to be able to assist with a wide range of tasks, from answering simple questions to providing in-depth explanations and discussions on a wide range of topics. As a language model, Assistant is able to generate human-like text based on the input it receives, allowing it to engage in natural-sounding conversations and provide responses that are coherent and relevant to the topic at hand.
-
-Assistant is constantly learning and improving, and its capabilities are constantly evolving. It is able to process and understand large amounts of text, and can use this knowledge to provide accurate and informative responses to a wide range of questions. Additionally, Assistant is able to generate its own text based on the input it receives, allowing it to engage in discussions and provide explanations and descriptions on a wide range of topics.
-
-Overall, Assistant is a powerful tool that can help with a wide range of tasks and provide valuable insights and information on a wide range of topics. Whether you need help with a specific question or just want to have a conversation about a particular topic, Assistant is here to assist.
-
-input: {input}`;
-
-        const customRagPrompt = PromptTemplate.fromTemplate(template);
-
-        const chain = customRagPrompt.pipe(llm).pipe(new StringOutputParser());
-        const result = await chain.invoke({ input: message });
-
-        const botMessage = result;
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { text: botMessage, sender: "bot" },
-        ]);
+        const data = await response.json();
+        if (response.ok) {
+          const botMessage = data.content;
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            { text: botMessage, sender: "bot" },
+          ]);
+        } else {
+          console.error("Server Error:", data.error);
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            {
+              text: "Sorry, something went wrong on the server.",
+              sender: "bot",
+            },
+          ]);
+        }
       } catch (error) {
         console.error("Client Error:", error);
         setMessages((prevMessages) => [
@@ -141,7 +127,7 @@ input: {input}`;
             display: "flex",
             alignItems: "center",
             borderBottom: `1px solid ${theme.palette.primary[40]}`,
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.primary[10],
           }}
         >
           <IconButton
@@ -152,8 +138,15 @@ input: {input}`;
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h5" sx={{ flexGrow: 1, textAlign: "center" }}>
-            Chat Interface
+          <Typography
+            variant="h5"
+            sx={{
+              flexGrow: 1,
+              textAlign: "center",
+              color: theme.palette.accent[50],
+            }}
+          >
+            Finance Assistance
           </Typography>
         </Box>
         <Box
@@ -229,7 +222,7 @@ input: {input}`;
             borderTop: `1px solid ${theme.palette.primary[40]}`,
             display: "flex",
             alignItems: "center",
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.primary[10],
           }}
         >
           <TextField
@@ -242,14 +235,20 @@ input: {input}`;
               mr: 2,
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: theme.palette.primary[40],
+                  borderColor: theme.palette.accent[40],
                 },
                 "&:hover fieldset": {
                   borderColor: theme.palette.accent[40],
                 },
               },
               "& .MuiInputBase-input": {
-                color: theme.palette.text.primary,
+                color: theme.palette.text.primary, // Input text color
+              },
+              "& .MuiInputLabel-root": {
+                color: theme.palette.text.primary, // Label color
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: theme.palette.text.primary, // Focused label color
               },
             }}
             InputProps={{
