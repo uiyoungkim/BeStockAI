@@ -11,7 +11,7 @@ const Footer = () => {
                     <Grid item xs={12} sm={6} md={3}>
                         <Typography variant="h6" gutterBottom>About</Typography>
                         <ul style={{ listStyle: 'none', padding: 0 }}>
-                            <li><Link href="/road0map" color="inherit">Roadmap</Link></li>
+                            <li><Link href="/roadmap" color="inherit">Roadmap</Link></li>
                             <li><Link href="/our-team" color="inherit">Our Team</Link></li>
                         </ul>
                     </Grid>
