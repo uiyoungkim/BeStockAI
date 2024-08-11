@@ -138,7 +138,7 @@ export default function StartPage() {
 
         {/* Call to Action Section */}
         <Box sx={{ textAlign: 'center', mb: 8 }}>
-          <Typography variant="h4" sx={{ mb: 4 }}>
+          <Typography variant="h4" sx={{ mb: 4, color: theme.palette.accent[40] }}>
             Get Involved
           </Typography>
           <Link href="/contact" passHref>

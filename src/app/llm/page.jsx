@@ -19,11 +19,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MicIcon from "@mui/icons-material/Mic";
 import ImageIcon from "@mui/icons-material/Image";
 
-const recommendedPrompts = [
-  "What's the latest news?",
-  "Stock Analysis",
-  "Crypto Updates",
-];
+const recommendedPrompts = ["What's the latest news?", "Stock Analysis"];
 
 export default function LLMPage() {
   const theme = useTheme();
@@ -131,7 +127,7 @@ export default function LLMPage() {
             display: "flex",
             alignItems: "center",
             borderBottom: `1px solid ${theme.palette.primary[40]}`,
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.primary[10],
           }}
         >
           <IconButton
@@ -142,8 +138,15 @@ export default function LLMPage() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h5" sx={{ flexGrow: 1, textAlign: "center" }}>
-            Chat Interface
+          <Typography
+            variant="h5"
+            sx={{
+              flexGrow: 1,
+              textAlign: "center",
+              color: theme.palette.accent[50],
+            }}
+          >
+            Finance Assistance
           </Typography>
         </Box>
         <Box
@@ -219,7 +222,7 @@ export default function LLMPage() {
             borderTop: `1px solid ${theme.palette.primary[40]}`,
             display: "flex",
             alignItems: "center",
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.primary[10],
           }}
         >
           <TextField
@@ -232,14 +235,20 @@ export default function LLMPage() {
               mr: 2,
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: theme.palette.primary[40],
+                  borderColor: theme.palette.accent[40],
                 },
                 "&:hover fieldset": {
                   borderColor: theme.palette.accent[40],
                 },
               },
               "& .MuiInputBase-input": {
-                color: theme.palette.text.primary,
+                color: theme.palette.text.primary, // Input text color
+              },
+              "& .MuiInputLabel-root": {
+                color: theme.palette.text.primary, // Label color
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: theme.palette.text.primary, // Focused label color
               },
             }}
             InputProps={{
