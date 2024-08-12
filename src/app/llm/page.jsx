@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import {
   TextField,
@@ -26,7 +27,7 @@ export default function LLMPage() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([
     {
-      text: "Hello Uiyoung, How can I help you today?",
+      text: "Hello, how can I assist you today?",
       sender: "bot",
     },
   ]);
@@ -36,49 +37,62 @@ export default function LLMPage() {
     setMessage(event.target.value);
   };
 
-  const handleSendClick = async () => {
-    if (message.trim() !== "") {
-      setMessages([...messages, { text: message, sender: "user" }]);
+  const handleSendClick = () => {
+    if (message.trim() === "") return;
 
-      try {
-        const response = await fetch("/api/gemini", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ message }),
-        });
+    setMessages((prev) => [...prev, { text: message, sender: "user" }]);
 
-        const data = await response.json();
-        if (response.ok) {
-          const botMessage = data.content;
-          setMessages((prevMessages) => [
-            ...prevMessages,
-            { text: botMessage, sender: "bot" },
-          ]);
-        } else {
-          console.error("Server Error:", data.error);
-          setMessages((prevMessages) => [
-            ...prevMessages,
-            {
-              text: "Sorry, something went wrong on the server.",
-              sender: "bot",
-            },
-          ]);
-        }
-      } catch (error) {
-        console.error("Client Error:", error);
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          {
-            text: "Sorry, something went wrong with the request.",
-            sender: "bot",
-          },
-        ]);
-      }
-
-      setMessage("");
+    if (
+      message.toLowerCase().includes("stock") &&
+      message.toLowerCase().includes("1000")
+    ) {
+      // Hardcoded response for demonstration
+      const hardcodedResponse = (
+        <Box>
+          <Typography variant="h6" gutterBottom>
+            Investment Recommendations
+          </Typography>
+          <List>
+            <ListItem>
+              <ListItemText
+                primary="Google (Alphabet)"
+                secondary="Recommendation: Strong Buy (90% confidence) - Google continues to lead with cutting-edge innovations in AI and technology, expanding its market dominance with robust product and service offerings."
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemText
+                primary="Apple"
+                secondary="Recommendation: Buy (80% confidence) - With consistent performance and a loyal consumer base, Apple remains a stable investment. New product launches are expected to drive further growth."
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemText
+                primary="Amazon"
+                secondary="Recommendation: Buy (85% confidence) - Amazon's strong position in e-commerce and cloud computing continues to offer significant growth potential, making it a favorable choice for long-term investment."
+              />
+            </ListItem>
+          </List>
+          <Typography variant="body2">
+            For detailed financial data on any specific company, please use our
+            finance service accessible from the menu bar.
+          </Typography>
+        </Box>
+      );
+      setMessages((prev) => [
+        ...prev,
+        { text: hardcodedResponse, sender: "bot" },
+      ]);
+    } else {
+      setMessages((prev) => [
+        ...prev,
+        {
+          text: "I'm sorry, I can only help with stock investment queries.",
+          sender: "bot",
+        },
+      ]);
     }
+
+    setMessage("");
   };
 
   const toggleDrawer = () => {
@@ -161,35 +175,8 @@ export default function LLMPage() {
             backgroundColor: theme.palette.background.paper,
           }}
         >
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, mb: 4 }}>
-            {recommendedPrompts.map((prompt, index) => (
-              <Paper
-                key={index}
-                sx={{
-                  p: 2,
-                  backgroundColor: theme.palette.primary[30],
-                  borderRadius: 2,
-                  cursor: "pointer",
-                  transition: "background-color 0.3s",
-                  "&:hover": {
-                    backgroundColor: theme.palette.accent[30],
-                  },
-                }}
-              >
-                <Typography variant="body1" color={theme.palette.text.primary}>
-                  {prompt}
-                </Typography>
-              </Paper>
-            ))}
-          </Box>
           <Box
-            sx={{
-              flexGrow: 1,
-              overflowY: "auto",
-              padding: 2,
-              borderRadius: 2,
-              backgroundColor: theme.palette.primary[20],
-            }}
+            sx={{ flexGrow: 1, overflowY: "auto", padding: 2, borderRadius: 2 }}
           >
             {messages.map((msg, index) => (
               <Paper
