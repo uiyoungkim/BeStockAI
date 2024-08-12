@@ -67,7 +67,7 @@ function Header() {
           <Toolbar disableGutters>
             <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
               <Link href="/" passHref>
-                <Image src="/logo.png" alt="Logo" width={80} height={65} />
+                <Image src="/logo.png" alt="Logo" width={75} height={55} />
               </Link>
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
