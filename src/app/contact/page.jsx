@@ -180,7 +180,7 @@ export default function Contact() {
             >
               <EmailIcon sx={{ mr: 2, color: theme.palette.text.primary }} />
               <Typography variant="body1">
-                warren.gemini.service@gmail.com
+              bestockai.service@gmail.com
               </Typography>
             </Box>
           </Grid>
