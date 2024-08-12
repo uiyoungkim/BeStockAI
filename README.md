@@ -1,6 +1,6 @@
 # Finance Assistance Application
 
-Welcome to the Finance Assistance Application, an innovative MVP prototype designed to empower users with intelligent financial insights using cutting-edge GenAI technology.
+Welcome to the Finance Assistance Application, an innovative MVP prototype designed to empower users with intelligent financial insights using cutting-edge GenAI technology. #buildwithgemini
 
 ## Overview
 
