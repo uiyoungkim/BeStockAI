@@ -96,12 +96,12 @@ export default function StartPage() {
           </Typography>
           <Box
             component="iframe"
-            width="50%"
-            height="750"
+            width="40%"
+            height="100%"
             src="https://www.youtube.com/embed/U1WrY0bj7jo"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            sx={{ borderRadius: 2 }}
+            sx={{ borderRadius: 4 }}
           />
         </Box>
 
