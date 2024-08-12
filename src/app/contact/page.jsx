@@ -24,7 +24,7 @@ export default function Contact() {
   const theme = useTheme();
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Ensure this is working to prevent default form action
+    event.preventDefault();
     const formData = {
       name,
       email,
@@ -69,8 +69,8 @@ export default function Contact() {
           Contact Us
         </Typography>
         <Typography variant="body1" sx={{ textAlign: "center", mb: 4 }}>
-          We`&apos;`d love to hear from you! Fill out the form below to get in touch
-          with us.
+          We`&apos;`d love to hear from you! Fill out the form below to get in
+          touch with us.
         </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -180,7 +180,7 @@ export default function Contact() {
             >
               <EmailIcon sx={{ mr: 2, color: theme.palette.text.primary }} />
               <Typography variant="body1">
-              bestockai.service@gmail.com
+                bestockai.service@gmail.com
               </Typography>
             </Box>
           </Grid>

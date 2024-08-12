@@ -20,8 +20,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MicIcon from "@mui/icons-material/Mic";
 import ImageIcon from "@mui/icons-material/Image";
 
-const recommendedPrompts = ["What's the latest news?", "Stock Analysis"];
-
 export default function LLMPage() {
   const theme = useTheme();
   const [message, setMessage] = useState("");
@@ -37,7 +35,7 @@ export default function LLMPage() {
     setMessage(event.target.value);
   };
 
-  const handleSendClick = () => {
+  const handleSendClick = async () => {
     if (message.trim() === "") return;
 
     setMessages((prev) => [...prev, { text: message, sender: "user" }]);
@@ -46,7 +44,7 @@ export default function LLMPage() {
       message.toLowerCase().includes("stock") &&
       message.toLowerCase().includes("1000")
     ) {
-      // Hardcoded response for demonstration
+      // Hardcoded response for stock investment demonstration
       const hardcodedResponse = (
         <Box>
           <Typography variant="h6" gutterBottom>
@@ -83,13 +81,37 @@ export default function LLMPage() {
         { text: hardcodedResponse, sender: "bot" },
       ]);
     } else {
-      setMessages((prev) => [
-        ...prev,
-        {
-          text: "I'm sorry, I can only help with stock investment queries.",
-          sender: "bot",
-        },
-      ]);
+      // Make API call for other queries
+      try {
+        const response = await fetch("/api/gemini", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message }),
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setMessages((prev) => [
+            ...prev,
+            { text: data.content, sender: "bot" },
+          ]);
+        } else {
+          setMessages((prev) => [
+            ...prev,
+            { text: "Failed to fetch data from the API.", sender: "bot" },
+          ]);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setMessages((prev) => [
+          ...prev,
+          {
+            text: "An error occurred while trying to fetch data.",
+            sender: "bot",
+          },
+        ]);
+      }
     }
 
     setMessage("");

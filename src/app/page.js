@@ -79,12 +79,30 @@ export default function StartPage() {
           </Link>
         </Box>
 
+
         {/* Main Content Section */}
         <Box sx={{ display: 'flex', flexDirection: ['column', 'column', 'row'], justifyContent: 'space-between', alignItems: 'flex-start', mb: 6 }}>
           <Box sx={{ flex: 1, mr: [0, 0, 4], mt: 4, mb: [4, 4, 0] }}>
             <Box component="img" src="/testimage.png" alt="Finance Assistance" sx={{ width: '100%', height: 'auto', borderRadius: 2 }} />
           </Box>
           <Chatbot />
+        </Box>
+
+
+        {/* YouTube Video Section */}
+        <Box sx={{ textAlign: 'center', mb: 6 }}>
+          <Typography variant="h4" sx={{ mb: 4, color: theme.palette.accent[40] }}>
+            Watch Our Demo
+          </Typography>
+          <Box
+            component="iframe"
+            width="50%"
+            height="750"
+            src="https://www.youtube.com/embed/U1WrY0bj7jo"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            sx={{ borderRadius: 2 }}
+          />
         </Box>
 
         {/* Introduction Section */}
